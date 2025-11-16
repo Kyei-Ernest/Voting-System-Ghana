@@ -1,0 +1,144 @@
+Overview of Files
+__init__.py: This file initializes the Voting_system package.
+age_calc.py: Contains functionality to calculate age based on a given date of birth.
+ballot_creation.py: Handles the creation of ballots for the voting system.
+mysql_delete.py: Provides functionality to delete records from a MySQL database.
+mysql_value_checker.py: Checks values in a MySQL database.
+prov_Ghcard_details.py: Handles provisional Ghana card details (possibly for voter identification).
+Registration.py: Manages voter registration processes.
+results_processing.py: Processes and tabulates voting results.
+schema.py: Defines the database(MySQL) schema for the voting system.
+voting.py: Contains the main logic for the voting process.
+
+NB:All these files are connected to a MYsql database(Which means you will need a MYsql database to run these files successsfully).
+   First of all make sure to setup your your database(MYsql) and run the schema.py file in order to create the database needed for the voting system.
+# Steps
+* Run schema.py to create the database structure required for the voting system( note that the database name you use
+  must be used across all the other modules) 
+* Execute the "start_other_registration()" function [register the presidential_candidate,the constituencies and the member_of_parliament(take note of the 
+  order stated and do same)]. After you can execute the "start_voter_registration()" function to register voters.
+* User can then cast votes using the voting module
+
+# Voting System
+
+## Modules
+
+### `__init__.py`
+Initializes the `Voting_system` package and lists all the available modules.
+
+### `age_calc.py`
+This module contains functionality to calculate a person's age based on their date of birth.
+
+- **Function**:
+  - `calculate_age(dob)`:
+    - **Parameters**: 
+      - `dob (str)`: Date of birth in the format 'YYYY-MM-DD'.
+    - **Returns**: 
+      - `int`: Age in years.
+    - **Description**: 
+      - Parses the date of birth and computes the age by comparing it with the current date.
+
+### `ballot_creation.py`
+Handles the creation of ballots for the election process, ensuring each candidate is properly listed.
+
+- **Function**:
+  - display_presidents()`:
+    - **Returns**: 
+      - The list of presidential candidates to be voted for.
+    - **Description**: 
+      - Initializes a ballot with each candidate's name and id.
+- **Function**:
+  - display_mp()`:
+    - **Returns**: 
+      - The list of mp candidates to be voted for.
+    - **Description**: 
+      - Initializes a ballot with each candidate's name and id for the voter's constituency.
+
+
+### `mysql_delete.py`
+Provides functionality to delete specific records from a MySQL database based on given conditions.
+
+- **Function**:
+  - `delete_column(db_config, table, column)`:
+    - **Parameters**: 
+      - 'db_config (dic)': configuration for the database. 
+      - `table (str)`: Name of the table from which the column is to be deleted.
+      - `column (str)`: name of column to be deleted.
+    - **Description**: 
+      - Connects to the MySQL database, executes the delete command based on the tabel and column to be, and commits the transaction.
+- **Function**:
+    - `delete_row(db_config, table, condition)`:
+       - **Parameters**: 
+         - 'db_config (dic)': configuration for the database. 
+         - `table (str)`: Name of the table from which records are to be deleted.
+         - `condition (str)`: SQL condition to specify which records to delete.
+       - **Description**: 
+         - Connects to the MySQL database, executes the delete command based on the condition, and commits the transaction.
+
+
+### `mysql_value_checker.py`
+Checks if specific values exist within a MySQL database table.
+
+- **Function**:
+  - `check_value_exists(db_config, table, column, user_input)`:
+    - **Parameters**: 
+      - 'db_config (dic)': configuration for the database. 
+      - `table (str)`: Name of the table.
+      - `column (str)`: Name of the column.
+      - `value (str)`: Value to check.
+    - **Returns**: 
+      - `bool`: True if the value exists, False otherwise.
+    - **Description**: 
+      - Connects to the MySQL database and performs a query to check if the specified value exists in the given column.
+
+### `prov_Ghcard_details.py`
+Handles provisional Ghana card details, which may be used for voter identification and verification. This is a way to help test or use the program since i donnot 
+have access to the Ghana Card details database. You can feel free to make a lot of changes to the data or the module in general just to make it more realistic unless 
+you have access to the original database.
+
+### `Registration.py`
+Manages the voter registration process, ensuring that all necessary details are collected and stored.
+**Classes**:
+- 'RegisterVoter':
+   This class contains all the processes a voter info must go through before finally making ot to the database.
+-'RegisterPresident':
+   This class contains all the processes a presidential candidate info must go through before finally making ot to the database.
+-'RegisterMP(RegisterPresident)':
+   This inherits some parameters from the 'RegisterPresident' class.
+   This class contains all the processes an MP candidate info must go through before finally making ot to the database.
+
+- **Function**:
+  - `start_other_registration()`:
+    - **Description**: 
+      - This function allows the user to register the presidential candidate,constittuency and the mp candidate.
+  - 'start_voter_registration_process()';
+    - **Description**: 
+      - This function is allows the voter to enter and register their details.
+
+### `results_processing.py`
+Processes and tabulates voting results from multiple ballots to determine the outcome of the election.
+
+- **Function**:
+  - `display_results()':
+    - **Description**: 
+      - Fetches the results stored in the database and display it to the user.
+  - 'president_vote_count()':
+    - **Description**: 
+      - Counts the votes of each president and its percentages and store.
+  - 'mp_vote_count()':
+    - **Description**: 
+      - Counts the votes for each mp candidate in every constituency and store.
+
+### `schema.py`
+Defines the database schema necessary for the voting system, including tables for voters, candidates, and votes.
+
+### `voting.py`
+Contains the main logic for the voting process, ensuring that votes are correctly cast and recorded.
+
+- **Function**:
+  - `display_poll()`:
+    - **Returns**: 
+      - Returns the list of candidates in order for candidates to choose their choice.
+    - **Description**: 
+      - Records a vote for a given candidate by a specified voter, typically involving database operations to store the vote.
+
