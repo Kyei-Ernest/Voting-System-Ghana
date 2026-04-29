@@ -2,7 +2,7 @@
 
 A Python-based electronic voting system prototype tailored for the Ghanaian electoral context. This project demonstrates a complete election lifecycle including voter registration with Ghana Card verification, candidate registration (Presidential & MP), ballot casting, and automatic result tabulation.
 
-## 🚀 Features
+##  Features
 
 - **Voter Registration**: Captures strict details (ID, Name, DOB with age verification, Constituency).
 - **Security**: 
@@ -15,12 +15,12 @@ A Python-based electronic voting system prototype tailored for the Ghanaian elec
   - One-man-one-vote enforcement.
 - **Results**: Automated tabulation of votes with percentage calculations.
 
-## 🛠️ Prerequisites
+##  Prerequisites
 
 - **Python 3.8+**
 - **MySQL Server**
 
-## 📦 Installation & Setup
+##  Installation & Setup
 
 1.  **Clone/Download the repository**
 
@@ -87,7 +87,7 @@ View the election outcomes:
 python3 results_processing.py
 ```
 
-## 📂 Project Structure
+##  Project Structure
 
 - **`Registration.py`**: Main script for registering voters and candidates.
 - **`voting.py`**: Interface for casting votes.
